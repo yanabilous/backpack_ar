@@ -112,7 +112,7 @@ const BackpackConfigurator = () => {
 
   // Генерація URL для Google's Scene Viewer
   const generateSceneViewerUrl = () => {
-    return `https://your-domain.com/scene-viewer?file=${encodeURIComponent(backpackModel)}`;
+    return `https://backpackar.netlify.app/${encodeURIComponent(backpackModel)}`;
   };
 
   // Відкриття Scene Viewer на мобільному пристрої або показ QR-коду на десктопі
