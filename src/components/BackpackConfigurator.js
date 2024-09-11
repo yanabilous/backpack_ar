@@ -14,6 +14,7 @@ const BackpackConfigurator = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [showQR, setShowQR] = useState(false);
 
+  // Перевірка на мобільний пристрій
   useEffect(() => {
     setIsMobile(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
   }, []);
@@ -23,7 +24,11 @@ const BackpackConfigurator = () => {
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    mountRef.current.appendChild(renderer.domElement);
+    const mountNode = mountRef.current;
+    if (mountNode) {
+      mountNode.appendChild(renderer.domElement);
+    }
+
     renderer.setClearColor(0xffffff);
 
     const light = new THREE.AmbientLight(0xffffff, 1);
@@ -34,13 +39,21 @@ const BackpackConfigurator = () => {
     scene.add(directionalLight);
 
     const loader = new GLTFLoader();
-    loader.load(backpackModel, (gltf) => {
-      const loadedModel = gltf.scene;
-      loadedModel.scale.set(2, 2, 2);
-      loadedModel.position.set(0, -1, 0);
-      modelRef.current = loadedModel;
-      scene.add(loadedModel);
-    });
+    loader.load(
+      backpackModel,
+      (gltf) => {
+        const loadedModel = gltf.scene;
+        loadedModel.scale.set(2, 2, 2);
+        loadedModel.position.set(0, -1, 0);
+        modelRef.current = loadedModel;
+        scene.add(loadedModel);
+        console.log("Model loaded and added to scene.");
+      },
+      undefined,
+      (error) => {
+        console.error("Error loading model:", error);
+      }
+    );
 
     camera.position.z = 5;
 
@@ -68,8 +81,8 @@ const BackpackConfigurator = () => {
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", handleResize);
-      if (mountRef.current) {
-        mountRef.current.removeChild(renderer.domElement);
+      if (mountNode) {
+        mountNode.removeChild(renderer.domElement);
       }
     };
   }, []);
@@ -84,13 +97,16 @@ const BackpackConfigurator = () => {
             if (child.isMesh && child.material) {
               child.material.map = texture;
               child.material.needsUpdate = true;
+              console.log("Texture updated.");
             }
           });
+        } else {
+          console.error("Model is not yet loaded.");
         }
       },
       undefined,
       (error) => {
-        console.error("Помилка завантаження текстури:", error);
+        console.error("Error loading texture:", error);
       }
     );
   };
@@ -102,9 +118,12 @@ const BackpackConfigurator = () => {
           if (!partName || child.name === partName) {
             child.material.color.set(color);
             child.material.needsUpdate = true;
+            console.log("Color updated.");
           }
         }
       });
+    } else {
+      console.error("Model is not yet loaded.");
     }
   };
 
@@ -112,11 +131,12 @@ const BackpackConfigurator = () => {
     changeColor(color, "Mesh_1");
   };
 
-
+  // Генерація URL для Google's Scene Viewer
   const generateSceneViewerUrl = () => {
     return `https://backpackar.netlify.app/${encodeURIComponent(backpackModel)}`;
   };
 
+  // Відкриття Scene Viewer на мобільному пристрої або показ QR-коду на десктопі
   const handleARClick = () => {
     if (isMobile) {
       window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${backpackModel}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
