@@ -14,7 +14,6 @@ const BackpackConfigurator = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [showQR, setShowQR] = useState(false);
 
-  // Перевірка на мобільний пристрій
   useEffect(() => {
     setIsMobile(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
   }, []);
@@ -113,12 +112,11 @@ const BackpackConfigurator = () => {
     changeColor(color, "Mesh_1");
   };
 
-  // Генерація URL для Google's Scene Viewer
+
   const generateSceneViewerUrl = () => {
     return `https://backpackar.netlify.app/${encodeURIComponent(backpackModel)}`;
   };
 
-  // Відкриття Scene Viewer на мобільному пристрої або показ QR-коду на десктопі
   const handleARClick = () => {
     if (isMobile) {
       window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${backpackModel}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
