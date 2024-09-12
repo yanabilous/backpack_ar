@@ -8,43 +8,55 @@
     top: 20px;
 
     .qr {
-      max-width: 225px;
+      width: 305px;
+      height: 398px;
+      background: #FFFFFF;
       position: fixed;
       top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: white!important;
-      padding: 40px;
-      border: 1px solid #4169E1;
       z-index: 10000;
-      border-radius: 30px;
+      padding: 20px;
 
-      .btn-qr {
+
+      .qr-wrapper {
+        max-width: 225px;
         position: fixed;
-        top: 16px;
-        right: 16px;
-        background: none;
-        border: none;
-      }
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white !important;
+        padding: 40px;
+        border: 1px solid #4169E1;
+        border-radius: 30px;
 
-      .text {
-        color: #4169E1;
-        text-align: center;
-        font-family: Inter, sans-serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-      }
+        .btn-qr {
+          position: fixed;
+          top: 16px;
+          right: 16px;
+          background: none;
+          border: none;
+        }
 
-      .qr-code {
-        display: flex;
-        justify-content: center;
+        .text {
+          color: #4169E1;
+          text-align: center;
+          font-family: Inter, sans-serif;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
 
-        .border {
-          border-radius: 30px;
-          border: 1px solid #4169E1;
-          padding: 30px;
+        .qr-code {
+          display: flex;
+          justify-content: center;
+
+          .border {
+            border-radius: 30px;
+            border: 1px solid #4169E1;
+            padding: 30px;
+          }
         }
       }
     }
@@ -71,7 +83,6 @@
 
   .d-flex {
     display: flex;
-    //justify-content: center;
     justify-content: space-evenly;
     position: fixed;
     bottom: 20px;
