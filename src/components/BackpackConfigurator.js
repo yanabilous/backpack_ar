@@ -1,8 +1,8 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
-import {QRCodeCanvas} from "qrcode.react";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { QRCodeCanvas } from "qrcode.react";
 import backpackModel from "../assets/backpack/backpack.glb";
 import brownTexture from "../assets/backpack/denim_baseColor.jpg";
 import blackTexture from "../assets/backpack/fabric_baseColor.jpg";
@@ -22,7 +22,7 @@ const BackpackConfigurator = () => {
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({antialias: true});
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     const mountNode = mountRef.current;
@@ -133,18 +133,18 @@ const BackpackConfigurator = () => {
   };
 
   const generateSceneViewerUrl = () => {
-    const modelUrl = encodeURIComponent("https://your-server.com/path/to/backpack.glb"); // Замість цього вставте URL до вашої моделі
-    return `https://backpackar.netlify.app/?model=${modelUrl}`;
+    const modelUrl = encodeURIComponent("https://public/backpack.glb");
+    // return `https://backpackar.netlify.app/?model=${modelUrl}`;
+    return `https://backpackar.netlify.app/?model=public/backpack.glb`;
   };
 
   const handleARClick = () => {
     if (isMobile) {
-      window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent("https://your-server.com/path/to/backpack.glb")}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
+      window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent("https://public/backpack.glb")}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
     } else {
       setShowQR(true);
     }
   };
-
   return (
     <div className="section">
       <div className="link">
