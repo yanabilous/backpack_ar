@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { QRCodeCanvas } from "qrcode.react";
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
+import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import {QRCodeCanvas} from "qrcode.react";
 import backpackModel from "../assets/backpack/backpack.glb";
 import brownTexture from "../assets/backpack/denim_baseColor.jpg";
 import blackTexture from "../assets/backpack/fabric_baseColor.jpg";
@@ -22,7 +22,7 @@ const BackpackConfigurator = () => {
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     const mountNode = mountRef.current;
@@ -135,17 +135,20 @@ const BackpackConfigurator = () => {
   const generateSceneViewerUrl = () => {
     // const modelUrl = encodeURIComponent("https://public/backpack.glb");
     // return `https://backpackar.netlify.app/?model=${modelUrl}`;
-    return `https://backpackar.netlify.app/?model=backpack.glb`;
+    return `https://backpackar.netlify.app/backpack`;
   };
 
   const handleARClick = () => {
     if (isMobile) {
       // window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent("https://public/backpack.glb")}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
-      window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent("https://backpackar.netlify.app/backpack.glb")}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
+      // window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent("https://backpackar.netlify.app/backpack.glb")}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
+      // window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent("https://backpackar.netlify.app/backpack.glb")}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
+      window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;`;
     } else {
       setShowQR(true);
     }
   };
+
   return (
     <div className="section">
       <div className="link">
@@ -160,7 +163,7 @@ const BackpackConfigurator = () => {
 
         {showQR && (
           <div className="qr">
-            <button className='btn-qr' onClick={() => setShowQR(false)}>
+            <button className="btn-qr" onClick={() => setShowQR(false)}>
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                 <path
                   d="M11.2495 10.497L16.8775 4.8635C16.9768 4.76372 17.0325 4.62866 17.0324 4.4879C17.0323 4.34713 16.9765 4.21215 16.877 4.1125C16.678 3.9145 16.3275 3.9135 16.1265 4.1135L10.5 9.747L4.87154 4.112C4.67154 3.9145 4.32104 3.9155 4.12204 4.113C4.07265 4.1622 4.03355 4.22074 4.00702 4.28521C3.98049 4.34968 3.96707 4.41879 3.96754 4.4885C3.96754 4.6305 4.02254 4.7635 4.12204 4.862L9.75004 10.4965L4.12254 16.1315C4.02323 16.2314 3.96762 16.3667 3.9679 16.5076C3.96818 16.6484 4.02434 16.7835 4.12404 16.883C4.22054 16.9785 4.35704 17.0335 4.49804 17.0335H4.50104C4.64254 17.033 4.77904 16.9775 4.87354 16.881L10.5 11.2475L16.1285 16.8825C16.228 16.9815 16.361 17.0365 16.502 17.0365C16.5718 17.0367 16.6408 17.0231 16.7053 16.9965C16.7697 16.9699 16.8283 16.9309 16.8776 16.8816C16.9269 16.8323 16.966 16.7737 16.9926 16.7092C17.0192 16.6448 17.0327 16.5757 17.0325 16.506C17.0325 16.3645 16.9775 16.231 16.8775 16.1325L11.2495 10.497Z"
@@ -170,7 +173,7 @@ const BackpackConfigurator = () => {
             <p className="text">Scan the QR code with your phone. Within 1-3 seconds the AR function opens on your
               phone.</p>
             <div className="qr-code">
-                <QRCodeCanvas value={generateSceneViewerUrl()} className="border"/>
+              <QRCodeCanvas value={generateSceneViewerUrl()} className="border"/>
             </div>
 
 
