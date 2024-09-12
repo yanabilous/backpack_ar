@@ -133,7 +133,7 @@ const BackpackConfigurator = () => {
   };
 
   const generateSceneViewerUrl = () => {
-    const modelUrl = encodeURIComponent("https://public/backpack.glb");
+    // const modelUrl = encodeURIComponent("https://public/backpack.glb");
     // return `https://backpackar.netlify.app/?model=${modelUrl}`;
     return `https://backpackar.netlify.app/?model=public/backpack.glb`;
   };
