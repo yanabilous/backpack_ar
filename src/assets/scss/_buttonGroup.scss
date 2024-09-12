@@ -1,0 +1,50 @@
+.block {
+  .title {
+
+    color: #1A1A1A;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    border-bottom: 1px solid black;
+    padding-bottom: 6px;
+  }
+
+  .btn {
+    color: #1A1A1A;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: none;
+    border: none;
+
+    :hover {
+      color: #4169E1;
+    }
+
+    .radius {
+      display: flex;
+      width: 70px;
+      //padding: 10px 10px;
+      height: 30px;
+      justify-content: center;
+      align-items: center;
+      margin-right: 2px;
+
+      border-radius: 20px;
+      border: 1px solid #1A1A1A;
+      background: #FFF;
+    }
+
+    .circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 30px;
+    }
+  }
+}
+
