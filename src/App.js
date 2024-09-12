@@ -6,10 +6,10 @@ import ARComponent from "./components/ARComponent";
 function App() {
   return (
     <div className="App">
-      <BackpackConfigurator/>
+      {/*<BackpackConfigurator/>*/}
 
       <Routes>
-        {/*<Route path="/" element={<BackpackConfigurator/>}/>*/}
+        <Route path="/" element={<BackpackConfigurator/>}/>
         <Route path="/backpack" element={<ARComponent/>}/>
       </Routes>
 
