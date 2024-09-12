@@ -135,12 +135,13 @@ const BackpackConfigurator = () => {
   const generateSceneViewerUrl = () => {
     // const modelUrl = encodeURIComponent("https://public/backpack.glb");
     // return `https://backpackar.netlify.app/?model=${modelUrl}`;
-    return `https://backpackar.netlify.app/?model=public/backpack.glb`;
+    return `https://backpackar.netlify.app/?model=backpack.glb`;
   };
 
   const handleARClick = () => {
     if (isMobile) {
-      window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent("https://public/backpack.glb")}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
+      // window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent("https://public/backpack.glb")}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
+      window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent("https://backpackar.netlify.app//backpack.glb")}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;end;`;
     } else {
       setShowQR(true);
     }
