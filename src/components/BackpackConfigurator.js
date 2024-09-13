@@ -41,19 +41,25 @@ const BackpackConfigurator = () => {
 
     const loader = new GLTFLoader();
     loader.load(
-      backpackModel,
-      (gltf) => {
-        const loadedModel = gltf.scene;
-        loadedModel.scale.set(7, 7, 7);
-        loadedModel.position.set(0, -1, 0);
-        modelRef.current = loadedModel;
-        scene.add(loadedModel);
-      },
-      undefined,
-      (error) => {
-        console.error("Error loading model:", error);
-      }
-    );
+  backpackModel,
+  (gltf) => {
+    const loadedModel = gltf.scene;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) {
+      loadedModel.scale.set(5, 5, 5);
+    } else {
+      loadedModel.scale.set(7, 7, 7);
+    }
+    loadedModel.position.set(0, -1, 0);
+    modelRef.current = loadedModel;
+    scene.add(loadedModel);
+  },
+  undefined,
+  (error) => {
+    console.error("Error loading model:", error);
+  }
+);
+
 
     camera.position.z = 5;
 
